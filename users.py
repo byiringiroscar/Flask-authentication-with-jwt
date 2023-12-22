@@ -20,3 +20,7 @@ def get_all_users():
     return jsonify({
         'users': result,
     }), 200
+
+
+
+
