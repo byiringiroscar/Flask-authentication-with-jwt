@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from flask_jwt_extended import jwt_manager
+from flask_jwt_extended import JWTManager
 
 db = SQLAlchemy()
-jwt = jwt_manager()
+jwt = JWTManager()
