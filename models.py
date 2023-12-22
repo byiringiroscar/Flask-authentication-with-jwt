@@ -1,5 +1,6 @@
 from extension import db
 from uuid import uuid4
+from werkzeug.security import generate_password_hash
 
 
 class User(db.Model):
@@ -12,3 +13,6 @@ class User(db.Model):
 
     def __repr__(self):
         return f'<User {self.username}>'
+    
+    def set_password(self, password):
+        self.password = generate_password_hash(password)
