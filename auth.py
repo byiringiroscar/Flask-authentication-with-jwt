@@ -69,4 +69,5 @@ def whoami():
 @jwt_required(refresh=True)
 def refresh_access():
     identity = get_jwt_identity()
-    return jsonify({'message': identity})
+    access_token = create_access_token(identity=identity)
+    return jsonify({'access_token': access_token})
