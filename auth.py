@@ -10,8 +10,7 @@ def register_user():
     username = data.get('username')
     user = User.get_user_by_username(username=username)
     if user is not None:
-        pass
+        return jsonify({'message': 'User created'})
     else:
         return jsonify({"error": "User already exists"})
-    email = data.get('email')
-    return jsonify({'message': 'User created'})
+    
