@@ -70,4 +70,8 @@ def whoami():
 def refresh_access():
     identity = get_jwt_identity()
     access_token = create_access_token(identity=identity)
-    return jsonify({'access_token': access_token})
+    refresh_token = create_refresh_token(identity=identity)
+    return jsonify({
+        'access_token': access_token,
+        'refresh_token': refresh_token
+        })
