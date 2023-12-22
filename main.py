@@ -1,6 +1,6 @@
 from flask import Flask
-from extension import db
-from auth import auth_bp, jwt
+from extension import db, jwt
+from auth import auth_bp
 
 
 def create_app():
