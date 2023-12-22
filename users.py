@@ -1,5 +1,6 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 from models import User
+from schemas import UserSchema
 
 user_bp = Blueprint('users', __name__)
 
@@ -12,4 +13,8 @@ def get_all_users():
             page=page,
             per_page=per_page
     )
-    
+
+    result = UserSchema().dump(users, many=True)
+    return jsonify({
+        'users': result,
+    }), 200
