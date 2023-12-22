@@ -1,6 +1,6 @@
 from flask import Flask
 from extension import db
-from auth import auth_bp
+from auth import auth_bp, jwt
 
 
 def create_app():
@@ -8,6 +8,7 @@ def create_app():
     app.config.from_prefixed_env()
     # initialize extension
     db.init_app(app)
+    jwt.init_app(app)
 
 
     # register blueprints

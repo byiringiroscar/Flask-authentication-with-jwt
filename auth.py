@@ -19,4 +19,17 @@ def register_user():
     new_user.set_password(data.get('password'))
     new_user.save()
     return jsonify({"message": "User created successfully"}), 201
+
+
+@auth_bp.post('/login')
+def login_user():
+    data = request.get_json()
+    username = data.get('username')
+    password = data.get('password')
+    user = User.get_user_by_username(username=username)
+    if user is None:
+        return jsonify({"error": "User does not exist"}), 404
+    if not user.check_password(password=password):
+        return jsonify({"error": "Invalid credentials"}), 403
+    return jsonify({"message": "Login successful"}), 200
     
