@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, request
+from flask_jwt_extended import  create_access_token, create_refresh_token
 from models import User
 
 auth_bp = Blueprint('auth', __name__)
@@ -31,5 +32,15 @@ def login_user():
         return jsonify({"error": "User does not exist"}), 404
     if not user.check_password(password=password):
         return jsonify({"error": "Invalid credentials"}), 403
-    return jsonify({"message": "Login successful"}), 200
+    access_token = create_access_token(identity=user.username)
+    refresh_token = create_refresh_token(identity=user.username)
+    return jsonify(
+        {
+            'message': 'Logged In',
+            'tokens': {
+                'access_token': access_token,
+                'refresh_token': refresh_token
+            }
+        }
+    ), 200
     
