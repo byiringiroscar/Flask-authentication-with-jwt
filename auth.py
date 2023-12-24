@@ -81,8 +81,9 @@ def refresh_access():
 @jwt_required(verify_type=False)
 def logout_user():
     jti = get_jwt()['jti']
+    token_type = jti['type']
     token_b = TokenBlocklist(jti=jti)
     token_b.save()
     return jsonify({
-        'message': 'Successfully logged out'
+        'message': f'{token_type} token revoked successfully'
     }), 200
