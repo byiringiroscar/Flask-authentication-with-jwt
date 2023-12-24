@@ -78,7 +78,7 @@ def refresh_access():
 
 
 @auth_bp.post('/logout')
-@jwt_required()
+@jwt_required(verify_type=False)
 def logout_user():
     jti = get_jwt()['jti']
     token_b = TokenBlocklist(jti=jti)
