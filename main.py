@@ -54,9 +54,10 @@ def create_app():
         }), 401
     
     @jwt.token_in_blocklist_loader
-    def token_in_blocklist_callback(jwt_header, jwt_data):
-        jti = jwt_data['jti']
-        token = db.session.query(TokenBlocklist).filter(TokenBlocklist.jti == jti).scalar()
+    def check_if_token_revoked(jwt_header, jwt_payload: dict) -> bool:
+        jti = jwt_payload["jti"]
+        token = db.session.query(TokenBlocklist.id).filter_by(jti=jti).scalar()
+
         return token is not None
     
     return app

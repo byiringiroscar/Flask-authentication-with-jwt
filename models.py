@@ -39,7 +39,8 @@ class User(db.Model):
 
 class TokenBlocklist(db.Model):
     id = db.Column(db.String(), primary_key=True, default=lambda: str(uuid4()))
-    jti = db.Column(db.String(), nullable=False)
+    jti = db.Column(db.String(36), nullable=False, index=True)
+    type = db.Column(db.String(16), nullable=False)
     created_at = db.Column(db.DateTime(), default=datetime.utcnow)
 
     def __repr__(self):
@@ -48,6 +49,6 @@ class TokenBlocklist(db.Model):
     def save(self):
         db.session.add(self)
         db.session.commit()
-        
+
 
     
