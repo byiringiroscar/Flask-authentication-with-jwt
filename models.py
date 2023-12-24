@@ -44,5 +44,10 @@ class TokenBlocklist(db.Model):
 
     def __repr__(self):
         return f'<TokenBlocklist {self.jti}>'
+    
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+        
 
     
