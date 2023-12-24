@@ -1,6 +1,7 @@
 from extension import db
 from uuid import uuid4
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
 
 
 class User(db.Model):
@@ -31,3 +32,12 @@ class User(db.Model):
     def delete(self):
         db.session.delete(self)
         db.session.commit()
+
+
+class TokenBlocklist(db.Model):
+    __tablename__ = 'token_blocklist'
+    id = db.Column(db.String(), primary_key=True, default=lambda: str(uuid4()))
+    jti = db.Column(db.String(), nullable=False)
+    created_at = db.Column(db.DateTime(), default=datetime.utcnow)
+
+    
