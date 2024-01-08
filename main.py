@@ -3,9 +3,12 @@ from extension import db, jwt
 from auth import auth_bp
 from users import user_bp
 from models import User, TokenBlocklist
+import os
 
 def create_app():
     app = Flask(__name__)
+    db_path = os.path.join(os.getcwd(), 'instance', 'db.sqlite3')
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_path
     app.config.from_prefixed_env()
     # initialize extension
     db.init_app(app)
@@ -61,4 +64,10 @@ def create_app():
         return token is not None
     
     return app
+
+
+if __name__ == '__main__':
+    app = create_app()
+    app.run()
+
 
