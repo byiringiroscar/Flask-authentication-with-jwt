@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from models import User
 from schemas import UserSchema
 from flask_jwt_extended import jwt_required, get_jwt
+from flasgger import swag_from
 
 user_bp = Blueprint('users', __name__)
 
@@ -29,6 +30,7 @@ def get_all_users():
 
 @user_bp.get('/<string:username>')
 @jwt_required()
+@swag_from('./docs/user/user_single.yaml')
 def get_user(username):
     user = User.get_user_by_username(username=username)
     if user is None:

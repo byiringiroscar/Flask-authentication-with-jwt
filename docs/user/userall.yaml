@@ -1,7 +1,7 @@
-GET stats about bookmarks
+GET stats about all users
 ---
 tags:
-  - UserAll
+  - UserStat
 
 parameters:
   - in: header

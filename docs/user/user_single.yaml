@@ -1,0 +1,19 @@
+Redirect to a single username
+---
+tags:
+  - UserStat
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+  - in: path
+    name: username
+    required: true
+  
+
+responses:
+  302:
+    description: Redirects to the original link
+
+  404:
+    description: Record was not found
