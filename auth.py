@@ -40,6 +40,7 @@ def login_user():
     
 
 @auth_bp.post('/register')
+@swag_from('./docs/auth/register.yaml')
 def register_user():
     data = request.get_json()
     username = data.get('username')

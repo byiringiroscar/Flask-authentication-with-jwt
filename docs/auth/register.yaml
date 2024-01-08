@@ -11,15 +11,15 @@ parameters:
       type: object
       required:
         - "email"
-        - "password"
         - "username"
+        - "password"
       properties:
         email:
           type: "email"
-          example: "crycetruly@gmail.com"
+          example: "oscar@gmail.com"
         username:
           type: "username"
-          example: "usernamex"
+          example: "oscar"
         password:
           type: "string"
           format: password
