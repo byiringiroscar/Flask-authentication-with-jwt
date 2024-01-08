@@ -1,8 +1,8 @@
 template = {
     "swagger": "2.0",
     "info": {
-        "title": "Bookmarks API",
-        "description": "API for bookmarks",
+        "title": "User Test API",
+        "description": "API for User Test",
         "contact": {
             "responsibleOrganization": "",
             "responsibleDeveloper": "",

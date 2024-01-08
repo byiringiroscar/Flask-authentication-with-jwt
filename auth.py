@@ -59,6 +59,7 @@ def register_user():
 
 @auth_bp.get('/whoami')
 @jwt_required()
+@swag_from('./docs/user/userall.yaml')
 def whoami():
     return jsonify({
         'message': 'message',

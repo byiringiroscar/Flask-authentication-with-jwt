@@ -13,7 +13,7 @@ parameters:
         - "username"
         - "password"
       properties:
-        email:
+        username:
           username: "string"
           example: "oscarzaro"
         password:
