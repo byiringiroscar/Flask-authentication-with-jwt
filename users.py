@@ -27,5 +27,19 @@ def get_all_users():
     }), 200
 
 
+@user_bp.get('/<string:username>')
+@jwt_required()
+def get_user(username):
+    user = User.get_user_by_username(username=username)
+    if user is None:
+        return jsonify({
+            'message': 'User does not exist'
+        }), 404
+    result = UserSchema().dump(user)
+    return jsonify({
+        'user': result
+    }), 200
+
+
 
 
