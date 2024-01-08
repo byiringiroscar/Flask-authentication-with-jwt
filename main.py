@@ -4,15 +4,22 @@ from auth import auth_bp
 from users import user_bp
 from models import User, TokenBlocklist
 import os
+from flasgger import Swagger, swag_from
+from config.swagger import template, swagger_config
 
 def create_app():
     app = Flask(__name__)
     db_path = os.path.join(os.getcwd(), 'instance', 'db.sqlite3')
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_path
     app.config.from_prefixed_env()
+    SWAGGER={
+                'title': "Bookmarks API",
+                'uiversion': 3
+            }
     # initialize extension
     db.init_app(app)
     jwt.init_app(app)
+    Swagger(app, config=swagger_config, template=template)
 
 
     # register blueprints

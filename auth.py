@@ -7,10 +7,12 @@ from flask_jwt_extended import  (create_access_token,
                                  )
 from models import User, TokenBlocklist
 from extension import db
+from flasgger import swag_from
 
 auth_bp = Blueprint('auth', __name__)
 
 @auth_bp.post('/login')
+@swag_from('./docs/auth/login.yaml')
 def login_user():
     data = request.get_json()
     username = data.get('username')
